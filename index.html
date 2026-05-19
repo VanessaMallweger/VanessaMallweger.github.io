@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanessa Mallweger | Kreativdesign & Website-Optimierung</title>
+  <meta name="description" content="Freie Designerin für Dankeskarten, Visitenkarten, Persönlichkeitskarten, Website-Optimierung, Spielideen, Spielanleitungen und Video-Game-Konzepte." />
+  <style>
+    :root {
+      --bg: #fff8f3;
+      --text: #2d2523;
+      --accent: #b46a55;
+      --accent-dark: #7f3f30;
+      --card: #ffffff;
+      --soft: #f1ded4;
+      --muted: #6b5750;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 248, 243, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 1rem;
+      text-align: center;
+      z-index: 10;
+      border-bottom: 1px solid var(--soft);
+    }
+
+    nav a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      margin: 0 0.55rem;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    header {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      background: linear-gradient(135deg, #fff8f3, #f1ded4);
+    }
+
+    .hero {
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+    }
+
+    .hero p {
+      font-size: 1.22rem;
+      margin-bottom: 1.7rem;
+      max-width: 720px;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      border-radius: 36px;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 18px 45px rgba(127, 63, 48, 0.2);
+      border: 6px solid white;
+      justify-self: center;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0.25rem;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    h3 { color: var(--accent-dark); margin-bottom: 0.55rem; }
+    .intro {
+      max-width: 820px;
+      text-align: center;
+      margin: 0 auto 2.5rem;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1.6rem;
+      border-radius: 22px;
+      box-shadow: 0 10px 25px rgba(127, 63, 48, 0.08);
+      border: 1px solid var(--soft);
+    }
+
+    .highlight {
+      background: var(--accent-dark);
+      color: white;
+      border-radius: 30px;
+      padding: 2.5rem;
+    }
+
+    .highlight h2, .highlight h3 { color: white; }
+    .highlight p { margin-bottom: 1rem; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 5px solid white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .price {
+      font-size: 1.8rem;
+      color: var(--accent-dark);
+      font-weight: bold;
+      margin: 0.75rem 0;
+    }
+
+    .small { font-size: 0.9rem; opacity: 0.85; margin-top: 1rem; }
+    .steps { counter-reset: step; }
+    .step {
+      position: relative;
+      padding-left: 3.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+    }
+
+    form {
+      max-width: 760px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(127, 63, 48, 0.08);
+    }
+
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.4rem;
+      border: 1px solid var(--soft);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--soft);
+      color: var(--accent-dark);
+    }
+
+    .legal {
+      font-size: 0.95rem;
+      background: #fff;
+      border-radius: 22px;
+      padding: 1.5rem;
+      border: 1px solid var(--soft);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      nav a { display: inline-block; margin: 0.25rem 0.45rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-img { max-width: 290px; }
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-photo { margin: auto; }
+      .highlight { padding: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#dienste">Dienste</a>
+    <a href="#warum">Warum ich?</a>
+    <a href="#angebote">Angebote</a>
+    <a href="#ueber">Über mich</a>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#rechtliches">Rechtliches</a>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div>
+        <h1>Kreativdesign mit Persönlichkeit, Struktur & Wirkung</h1>
+        <p>
+          Ich gestalte Dankeskarten, Visitenkarten, Persönlichkeitskarten und kreative Konzepte – 
+          und optimiere Websites, damit sie klarer, professioneller und überzeugender wirken.
+        </p>
+        <a href="#kontakt" class="btn">Projekt anfragen</a>
+        <a href="#angebote" class="btn">Angebote ansehen</a>
+      </div>
+      <img class="hero-img" src="vanessa.jpg" alt="Vanessa Mallweger">
+    </div>
+  </header>
+
+  <section id="dienste">
+    <h2>Meine Dienste</h2>
+    <p class="intro">
+      Für Menschen und kleine Unternehmen, die keine Standardlösung wollen, sondern Design mit Aussage, Klarheit und Charakter.
+    </p>
+
+    <div class="grid">
+      <div class="card"><h3>Dankeskarten</h3><p>Persönliche Karten für Abschiede, Teams, Feiern, besondere Menschen oder geschäftliche Anlässe.</p></div>
+      <div class="card"><h3>Visitenkarten</h3><p>Professionelles Kartendesign, das zu deiner Persönlichkeit, Marke und Wirkung passt.</p></div>
+      <div class="card"><h3>Persönlichkeitskarten</h3><p>Individuelle Karten mit Symbolik, Aussage und persönlicher Bedeutung.</p></div>
+      <div class="card"><h3>Website-Optimierung</h3><p>Analyse und Verbesserung von Aufbau, Text, Wirkung, Design und Benutzerführung.</p></div>
+      <div class="card"><h3>Spiele & Spielideen</h3><p>Konzepte, Regeln, Charakterideen, Story-Elemente und kreative Struktur für Spiele.</p></div>
+      <div class="card"><h3>Spielanleitungen</h3><p>Klare, verständliche und schön aufbereitete Anleitungen für analoge und digitale Spiele.</p></div>
+      <div class="card"><h3>Video-Game-Konzepte</h3><p>Ideen für Story, Charaktere, Spielwelt, Texte und Grundstruktur.</p></div>
+      <div class="card"><h3>Kreative Sonderprojekte</h3><p>Du hast eine eigene Idee? Ich helfe dir, daraus ein sichtbares, klares Ergebnis zu machen.</p></div>
+    </div>
+  </section>
+
+  <section id="warum">
+    <div class="highlight">
+      <h2>Warum ich?</h2>
+      <p>
+        Viele gestalten – aber nicht jeder versteht, was hinter einer Idee wirklich steckt.
+        Ich verbinde Kreativität mit Struktur, Intuition mit Klarheit und Design mit Wirkung.
+      </p>
+      <p>
+        Bei mir bekommst du keine lieblose Vorlage, sondern ein Ergebnis, das zu dir, deinem Projekt und deiner Botschaft passt.
+        Ich denke mit, erkenne Unstimmigkeiten schnell und bringe Ideen in eine Form, die verständlich, schön und nutzbar ist.
+      </p>
+      <div class="grid">
+        <div class="card"><h3>Klarheit</h3><p>Ich bringe Ordnung in Ideen, Texte und Gestaltung.</p></div>
+        <div class="card"><h3>Persönlichkeit</h3><p>Dein Design soll nach dir aussehen – nicht nach irgendeinem Standard.</p></div>
+        <div class="card"><h3>Verlässlichkeit</h3><p>Ich arbeite strukturiert, ehrlich und lösungsorientiert.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="angebote">
+    <h2>Angebote & Preise</h2>
+    <p class="intro">Klare Einstiegspreise schaffen Vertrauen. Der finale Preis hängt vom Umfang ab.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Karten-Design</h3>
+        <p class="price">ab 35 €</p>
+        <p>Dankeskarten, Persönlichkeitskarten oder einfache Designkarten.</p>
+        <p class="small">Visitenkarten: ab 60 € · Druckvorbereitung optional</p>
+      </div>
+
+      <div class="card">
+        <h3>Website-Check</h3>
+        <p class="price">ab 120 €</p>
+        <p>Analyse von Aufbau, Text, Design, Wirkung und Benutzerführung.</p>
+        <p class="small">Ideal für Selbstständige und kleine Unternehmen.</p>
+      </div>
+
+      <div class="card">
+        <h3>Website-Optimierung</h3>
+        <p class="price">ab 180 €</p>
+        <p>Verbesserung von Texten, Struktur, Startseite, Angeboten und Kontaktbereich.</p>
+        <p class="small">Komplett-Überarbeitung nach Aufwand.</p>
+      </div>
+
+      <div class="card">
+        <h3>Spiel & Game-Konzept</h3>
+        <p class="price">ab 80 €</p>
+        <p>Spielidee, Anleitung, Story, Charaktere oder kreative Struktur.</p>
+        <p class="small">Für Brettspiele, Kartenspiele und Video-Games.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ueber">
+    <div class="highlight">
+      <h2>Über mich</h2>
+      <div class="about-grid">
+        <img class="about-photo" src="vanessa.jpg" alt="Vanessa Mallweger">
+        <div>
+          <p><strong>Ich bin Vanessa Mallweger – kreative Designerin mit einem klaren Blick für Struktur, Wirkung und das, was wirklich hinter einer Idee steckt.</strong></p>
+          <p>
+            Meine Kreativität war schon immer eine treibende Kraft in meinem Leben. Sie hilft mir nicht nur, neue Ideen zu entwickeln,
+            sondern auch Ordnung, Fokus und eine klare Linie in Projekte zu bringen.
+          </p>
+          <p>
+            Durch meine Erfahrung im kaufmännischen Bereich, meine Ausbildung im Rechnungswesen und meine kreative Arbeitsweise verbinde ich
+            Gestaltung mit Organisation. Ich arbeite zuverlässig, lösungsorientiert und mit Blick für Details.
+          </p>
+          <p>
+            Werte wie Ehrlichkeit, Gerechtigkeit, Respekt und Verantwortungsbewusstsein prägen meine Arbeit. Mein Ziel ist es,
+            Designs und Konzepte zu schaffen, die nicht nur schön aussehen, sondern Sinn, Wirkung und Persönlichkeit haben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <h2>So läuft eine Zusammenarbeit ab</h2>
+    <div class="card steps">
+      <div class="step"><h3>Anfrage</h3><p>Du beschreibst kurz, was du brauchst und wofür es gedacht ist.</p></div>
+      <div class="step"><h3>Klarheit</h3><p>Ich stelle gezielte Fragen, damit Ziel, Stil, Umfang und Preis klar sind.</p></div>
+      <div class="step"><h3>Umsetzung</h3><p>Ich gestalte, strukturiere oder optimiere dein Projekt nach Vereinbarung.</p></div>
+      <div class="step"><h3>Feinschliff</h3><p>Du bekommst die Möglichkeit für eine Korrekturrunde, damit das Ergebnis wirklich passt.</p></div>
+      <div class="step"><h3>Übergabe</h3><p>Du erhältst deine Dateien oder Optimierungsvorschläge sauber und verwendbar.</p></div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <p class="intro">
+      Schreib mir, was du brauchst. Je genauer du deine Idee beschreibst, desto besser kann ich sie für dich umsetzen.
+    </p>
+
+    <form action="mailto:vanessamallweger@gmail.com" method="post" enctype="text/plain">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="Name" placeholder="Dein Name" required />
+
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" name="Email" placeholder="deine@email.at" required />
+
+      <label for="leistung">Gewünschte Leistung</label>
+      <select id="leistung" name="Leistung">
+        <option>Dankeskarte</option>
+        <option>Visitenkarte</option>
+        <option>Persönlichkeitskarte</option>
+        <option>Website-Optimierung</option>
+        <option>Spiel / Spielidee</option>
+        <option>Spielanleitung</option>
+        <option>Video-Game-Konzept</option>
+        <option>Sonstiges Kreativprojekt</option>
+      </select>
+
+      <label for="budget">Ungefähres Budget</label>
+      <select id="budget" name="Budget">
+        <option>unter 100 €</option>
+        <option>100–250 €</option>
+        <option>250–500 €</option>
+        <option>über 500 €</option>
+        <option>noch offen</option>
+      </select>
+
+      <label for="nachricht">Nachricht</label>
+      <textarea id="nachricht" name="Nachricht" rows="6" placeholder="Beschreibe kurz dein Projekt..." required></textarea>
+
+      <button class="btn" type="submit">Nachricht senden</button>
+    </form>
+  </section>
+
+  <section id="rechtliches">
+    <h2>Rechtliches</h2>
+    <p class="intro">Diese Angaben sind vorbereitet und müssen vor Veröffentlichung mit deinen tatsächlichen Gewerbedaten geprüft und ergänzt werden.</p>
+
+    <div class="legal">
+      <h3>Impressum</h3>
+      <p>
+        Vanessa Mallweger<br>
+        Klementinweg 19a<br>
+        9500 Villach<br>
+        Österreich
+      </p>
+      <p>
+        Telefon: 0677 645 89 721<br>
+        E-Mail: vanessamallweger@gmail.com
+      </p>
+      <p>
+        Tätigkeitsbereich: Grafikdesign, kreative Dienstleistungen, Website-Optimierung, Spiel- und Konzeptentwicklung
+      </p>
+      <p>
+        Mitglied der Wirtschaftskammer Kärnten<br>
+        Gewerbebehörde: Bezirkshauptmannschaft Villach-Land / Magistrat Villach bitte prüfen und korrekt eintragen<br>
+        Gewerbeordnung: www.ris.bka.gv.at
+      </p>
+      <p class="small">
+        Hinweis: Sobald dein Gewerbe angemeldet ist, trage hier die exakte Gewerbebezeichnung und zuständige Behörde ein.
+      </p>
+    </div>
+
+    <div class="legal">
+      <h3>Datenschutzerklärung</h3>
+      <p>
+        Der Schutz personenbezogener Daten ist mir wichtig. Daten, die über diese Website oder per E-Mail übermittelt werden,
+        werden ausschließlich zur Bearbeitung von Anfragen, Angeboten und Aufträgen verwendet.
+      </p>
+      <p>
+        Es werden keine personenbezogenen Daten ohne rechtliche Grundlage oder Zustimmung an Dritte weitergegeben.
+        Betroffene Personen haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung.
+      </p>
+      <p>
+        Kontakt für Datenschutzanfragen: vanessamallweger@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Vanessa Mallweger · Kreativdesign & Website-Optimierung</p>
+    <p class="small">Design mit Gefühl, Klarheit und Persönlichkeit.</p>
+  </footer>
+
+</body>
+</html>
